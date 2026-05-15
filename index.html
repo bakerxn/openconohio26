@@ -34,7 +34,7 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 .reveal{font-size:32px}
-.reveal .slides section{display:flex!important;flex-direction:column;justify-content:center;padding:48px 80px;box-sizing:border-box;text-align:left;height:100%}
+.reveal .slides section{display:flex!important;flex-direction:column;justify-content:center;padding:48px 80px;box-sizing:border-box;text-align:left;height:100%;overflow:visible !important;}
 .reveal .slides section.center-slide{text-align:center;align-items:center}
 .reveal .slides section.center-slide>*{max-width:960px;width:100%}
 
@@ -87,13 +87,38 @@
 .talk-point.open .talk-toggle{transform:rotate(45deg)}
 
 /* Citation drawer */
-.cite-wrapper{position:relative}
-.cite-btn{font-size:.4em;font-family:'Nunito Sans',sans-serif;font-weight:600;color:var(--green);background:var(--green-light);border:none;padding:4px 12px;border-radius:100px;cursor:pointer;transition:all .2s;float:right;margin-top:4px}
-.cite-btn:hover{background:var(--green);color:#fff}
-.cite-drawer{width:100%;max-height:0;overflow:hidden;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.1);border:1px solid #e0e0dc;transition:max-height .35s ease,opacity .3s ease;opacity:0;padding:0;margin-top:8px;clear:both}
-.cite-drawer.open{max-height:300px;opacity:1;padding:16px 18px;overflow-y:auto}
-.cite-drawer p{font-size:11px!important;color:var(--text)!important;line-height:1.5;margin:0 0 8px}
-.cite-drawer .cite-title{font-weight:600;color:var(--heading)!important;margin-bottom:10px;font-size:12px!important}
+.cite-btn {
+  font-size: .4em;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  border: none;
+  padding: 4px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s;
+  float: right;
+  margin-top: 4px;
+}
+.cite-btn:hover { background: var(--green); color: #fff; }
+.cite-drawer {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.1);
+  border: 1px solid #e0e0dc;
+  transition: max-height .35s ease, opacity .3s ease;
+  opacity: 0;
+  padding: 0;
+  margin-top: 8px;
+  clear: both;
+}
+.cite-drawer.open { max-height: 500px; opacity: 1; padding: 16px 18px; overflow-y: auto; flex=shrink:0; min-height: 100px; }
+.cite-drawer p { font-size: 13px !important; color: var(--text) !important; line-height: 1.6; margin: 0 0 10px; }
+.cite-drawer .cite-title { font-weight: 600; color: var(--heading) !important; margin-bottom: 12px; font-size: 15px !important; }
 
 /* MLT Before/After */
 #mlt-demo-container{position:relative;width:100%;min-height:300px;border-radius:12px;overflow:hidden;border:1px solid #e0e0dc}
@@ -268,8 +293,9 @@
   <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
   <div class="cite-drawer" role="region" aria-label="References">
     <p class="cite-title">References</p>
-    <p>Theelen, H., Canisius, E., &amp; Lambert, G. (2025). Instructional strategies and cognitive activation in higher education. <em>Active Learning in Higher Education, 26</em>(3).</p>
-    <p>Foster, C. et al. (2024). Challenges in applying cognitive science to curriculum design. <em>The Curriculum Journal, 35</em>(3).</p>
+    <p>Hill, R. (2023). AI as fad or AI as lasting? Priorities for college faculty instructional development for generative artificial intelligence. <em>Irish Journal of Technology Enhanced Learning,</em>7(2), 136-145.</p>
+    <p>Theelen, H., Canisius, E., &amp; Lambert, G. (2025). The relationship between instructional strategies and cognitive activation in higher education: A student persepctive.<em>Active Learning in Higher Education, 26</em>(3), 521-541.</p>
+    <p>Zawacki-Richter, O., Marin, V. I., Bond, M., &amp; Gouverneur, F. (2019). Systematic review of research on artificial intelligence applications in higher education - where are the educators? <em>International Journal of Educational Technology in Higher Education, 16</em>(1).</p>
   </div>
 </section>
 
@@ -299,8 +325,11 @@
   <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
   <div class="cite-drawer" role="region" aria-label="References">
     <p class="cite-title">References</p>
-    <p>Oirschot, G. V. et al. (2024). Evaluation of multimedia patient education materials. <em>JMIR Rehab. and Assistive Tech., 11</em>.</p>
-    <p>McNamara, S. et al. (2023). Content acquisition podcasts vs open-access podcasts. <em>J. of Special Education Technology, 39</em>(1).</p>
+    <p>Barker, P., &amp; Campbell, L. M. (2016). <em>Open Education.</em></p>
+    <p>Mills, A., Bali, M., &amp; Eaton, L. (2023). How do we respond to generative AI in education? Open educational practices give us a framework for an ongoing process.<em>Journal of Applied Learning &amp; Teaching, 6</em>(1).</p>
+    <p>Orzech, M. J., Zhang, J., Orzel, V., Sultana, S., Thompsell, A., Wood, J., &amp; Ning, Y. (2025). All about OER - Why, what, how, and so what: A colective case study.<em>Journal of Educational Technology Systems, 53</em>(3), 242-259.</p>
+    <p>UNESCO. (2019). <em>Recommendation on Open Educational Resources (OER).</em></p>
+    <p>Wiley, D. (2014, March). <em>The Access Compromise and the 5th R.</em></p>
   </div>
 </section>
 
@@ -349,10 +378,10 @@
   <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
   <div class="cite-drawer" role="region" aria-label="References">
     <p class="cite-title">Multimedia Learning Theory</p>
-    <p>Mayer, R. E. (2017). Using multimedia for e-learning. <em>J. of Computer Assisted Learning, 33</em>(5).</p>
-    <p>Cavanagh, T. M. &amp; Kiersch, C. E. (2022). Online multimedia lessons via CTML. <em>Ed. Tech. Research &amp; Dev., 71</em>(3).</p>
-    <p>Fyfield, M. et al. (2019). 25 principles for effective instructional video design. <em>Ascilite Publications</em>.</p>
-    <p>Noetel, M. et al. (2021). Multimedia design for learning: meta-meta-analysis. <em>Review of Ed. Research, 92</em>(3).</p>
+    <p>Cavanagh, T. M. &amp; Kiersch, C. E. (2023). Using commonly-available technologies to create online multimedia lessons through the application of Cognitive Theory of Multimedia Learning. <em>Educational Technology Research and Development, 71</em>(3), 1033-1053.</p>
+    <p>Fyfield, M., Genderson, M., &amp; Phillips, M. (2019). 25 principles for effective instructional video design. <em>Proceedings of Australasian Society for Computers in Learning in Tertiary Education Annual Conference 2019: Diverse Learning. Diverse Goals. One Heart.</em>.</p>
+    <p>Mayer, R. E. (2017). Using multimedia for e-learning. <em>Journal of Computer Assisted Learning, 33</em>(5), 403-423.</p>
+    <p>Noetel, M., Griffith, S., Delaney, O., Harris, N. R., Sanders, T., Parker, P., ... &amp; Lonsdale, C. (2022). Multimedia design for learning: An overview of reviews with meta-meta-analysis. <em>Review of Educational Research, 92</em>(3), 413-454.</p>
   </div>
 </section>
 
@@ -566,8 +595,9 @@
   <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
   <div class="cite-drawer" role="region" aria-label="References">
     <p class="cite-title">References</p>
-    <p>AlShaikh, R. et al. (2024). CTML in AI educational video assistant design. <em>Heliyon, 10</em>(3).</p>
-    <p>Almasseri, M. &amp; Alhojailan, M. (2019). Flipped learning and CTML. <em>J. Computer Assisted Learning, 35</em>(6).</p>
+    <p>Bozkurt, A. (2023). Generative AI, synthetic contents, open educational resources (OER), and open educational practices (OEP): A new front in the openness landscape. <em>Open Praxis, 15</em>(3), 178-184.</p>
+    <p>Rampelt, F., Ruppert, R., Schleiss, J., Mah, D. K., Bata, K., &amp; Egloffstein, M. (2025). How do AI educators use open educational resources?: A cross-sectoral case study on OER for AI education. <em>Open Praxis, 17</em>(1), 46-63.</p>
+    <p>Tlili, A., &amp; Burgos, D. (2024). Unleashing the power of Open Educational Practices (OEP) through Artificial Intelligence (AI): Where to begin?. <em>Interactive Learning Environments, 32</em>(10), 6886-6893.</p>
   </div>
 </section>
 
