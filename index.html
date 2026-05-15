@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Designing Open Learning Tools in a Generative AI Era — Nicole Baker, OpenCon Ohio 2026. CC BY 4.0.">
+<title>Designing Open Learning Tools in a Generative AI Era</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --r-background-color:#FAFAF7;--r-main-font:'Nunito Sans',sans-serif;--r-heading-font:'Fraunces',serif;
+  --r-main-color:#3d3d3d;--r-heading-color:#1a2e1a;--r-link-color:#2e7d5b;--r-link-color-hover:#1a5c3f;
+  --r-selection-background-color:#d4eadf;--r-heading-text-transform:none;--r-heading-font-weight:400;
+  --green:#2e7d5b;--green-light:#d4eadf;--green-pale:#eef6f1;
+  --sky:#5ba4c9;--sky-light:#dbeef7;
+  --terra:#c07a50;--terra-light:#f5e6d8;
+  --text:#3d3d3d;--text-light:#707070;--heading:#1a2e1a;--bg:#FAFAF7;
+}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;top:-100%;left:0;background:var(--green);color:#fff;padding:.5em 1em;z-index:1000;font-family:'Nunito Sans',sans-serif;font-size:14px;text-decoration:none;border-radius:0 0 4px 0}
+.skip-link:focus{top:0}
+.reveal a:focus-visible,.reveal *:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.reveal{font-size:32px}
+.reveal .slides section{display:flex!important;flex-direction:column;justify-content:center;padding:48px 80px;box-sizing:border-box;text-align:left;height:100%}
+.reveal .slides section.center-slide{text-align:center;align-items:center}
+.reveal .slides section.center-slide>*{max-width:960px;width:100%}
+
+.reveal h1{font-size:3em;line-height:1.08;letter-spacing:-.02em;margin-bottom:.3em;color:var(--heading);font-weight:400}
+.reveal h2{font-size:2.2em;line-height:1.12;letter-spacing:-.01em;margin-bottom:.3em;color:var(--heading);font-weight:400}
+.reveal h3{font-size:1.15em;line-height:1.3;color:var(--green);font-family:var(--r-heading-font);font-weight:600;margin-top:0;margin-bottom:.2em}
+.reveal p,.reveal li{font-size:.72em;line-height:1.6;color:var(--text);font-weight:300}
+
+.reveal .big-word{font-family:var(--r-heading-font);font-size:5em;line-height:1;color:var(--heading);text-align:center;display:block;font-weight:300}
+.reveal .big-word em{color:var(--green);font-style:italic}
+
+.green{color:var(--green)!important}.terra{color:var(--terra)!important}.sky{color:var(--sky)!important}.muted{color:var(--text-light)!important}
+
+.reveal .pill{display:inline-block;padding:.2em .7em;border-radius:100px;font-size:.55em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6em;font-family:'Nunito Sans',sans-serif}
+.pill-green{background:var(--green-light);color:var(--green)}.pill-sky{background:var(--sky-light);color:#2a7a9e}.pill-warm{background:var(--terra-light);color:var(--terra)}.pill-outline{border:1.5px solid #ccc;color:var(--text-light);background:transparent}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;width:100%}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;align-items:start;width:100%}
+
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,.04);border:1px solid #e8e8e4}
+.card h3{margin-bottom:.15em}.card p{font-size:.6em;margin:0;color:var(--text-light)}
+.divider{width:50px;height:3px;background:var(--green);border:none;margin:.5em 0;border-radius:2px}
+
+.reveal blockquote{border:none;font-family:var(--r-heading-font);font-size:1.5em;font-style:italic;color:var(--heading);padding:0;margin:0;box-shadow:none;background:none;text-align:center;width:100%;font-weight:300}
+.reveal blockquote::before{content:'';display:block;width:50px;height:3px;background:var(--green);margin:0 auto .6em;border-radius:2px}
+
+.timeline-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px}
+.timeline-dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:8px}
+.timeline-item p{margin:0;font-size:.65em}.timeline-item strong{color:var(--heading);font-weight:600}
+
+/* MLT Explorer */
+.mlt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.mlt-card{background:#fff;border:1.5px solid #e0e0dc;border-radius:10px;padding:16px 18px;cursor:pointer;transition:all .25s ease;position:relative}
+.mlt-card:hover,.mlt-card:focus-within{border-color:var(--green);box-shadow:0 4px 16px rgba(46,125,91,.08);transform:translateY(-1px)}
+.mlt-card .mlt-num{font-family:var(--r-heading-font);font-size:1.4em;color:var(--green);line-height:1;float:left;margin-right:10px}
+.mlt-card .mlt-name{font-family:var(--r-heading-font);font-size:.8em;color:var(--heading);font-weight:600}
+.mlt-card .mlt-short{font-size:.5em;color:var(--text-light);margin-top:2px}
+.mlt-card .mlt-prompt{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--green-light);font-size:.5em;color:var(--green);font-style:italic;line-height:1.5}
+.mlt-card.expanded .mlt-prompt{display:block}
+.mlt-card .mlt-hint{font-size:.42em;color:#bbb;position:absolute;bottom:5px;right:10px;transition:opacity .2s}
+.mlt-card.expanded .mlt-hint{opacity:0}
+/* UDL card — same style as others, just spans full width */
+.mlt-card-full{grid-column:1/-1}
+
+/* Expandable talking points */
+.talk-point{cursor:pointer;transition:all .2s ease}
+.talk-point .talk-detail{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease;opacity:0;font-size:.5em;color:var(--green);padding-left:26px;line-height:1.5}
+.talk-point.open .talk-detail{max-height:200px;opacity:1;margin-top:4px}
+.talk-point .talk-toggle{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:10px;text-align:center;line-height:16px;margin-left:6px;transition:transform .2s;vertical-align:middle}
+.talk-point.open .talk-toggle{transform:rotate(45deg)}
+
+/* Citation drawer */
+.cite-wrapper{position:relative}
+.cite-btn{font-size:.4em;font-family:'Nunito Sans',sans-serif;font-weight:600;color:var(--green);background:var(--green-light);border:none;padding:4px 12px;border-radius:100px;cursor:pointer;transition:all .2s;float:right;margin-top:4px}
+.cite-btn:hover{background:var(--green);color:#fff}
+.cite-drawer{width:100%;max-height:0;overflow:hidden;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.1);border:1px solid #e0e0dc;transition:max-height .35s ease,opacity .3s ease;opacity:0;padding:0;margin-top:8px;clear:both}
+.cite-drawer.open{max-height:300px;opacity:1;padding:16px 18px;overflow-y:auto}
+.cite-drawer p{font-size:11px!important;color:var(--text)!important;line-height:1.5;margin:0 0 8px}
+.cite-drawer .cite-title{font-weight:600;color:var(--heading)!important;margin-bottom:10px;font-size:12px!important}
+
+/* MLT Before/After */
+#mlt-demo-container{position:relative;width:100%;min-height:300px;border-radius:12px;overflow:hidden;border:1px solid #e0e0dc}
+.mlt-state{position:absolute;inset:0;padding:24px;transition:opacity .6s ease}
+.mlt-state.before-state{opacity:1;z-index:2}
+.mlt-state.after-state{opacity:0;z-index:1}
+#mlt-demo-container.cleaned .before-state{opacity:0}
+#mlt-demo-container.cleaned .after-state{opacity:1}
+.mlt-wand-btn{display:block;margin:.6em auto 0;font-family:'Nunito Sans',sans-serif;font-size:.52em;font-weight:600;color:#fff;background:var(--green);border:none;padding:8px 20px;border-radius:100px;cursor:pointer;transition:all .25s}
+.mlt-wand-btn:hover{background:#1a5c3f;transform:scale(1.05)}
+
+/* Prompt layers */
+.prompt-container{background:#fff;border-radius:12px;border:1px solid #e0e0dc;padding:20px 24px;width:100%}
+.prompt-base{font-family:'Courier New',monospace;font-size:.55em;color:var(--terra);margin-bottom:12px}
+.prompt-layer{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease;border-left:3px solid var(--green-light);padding-left:12px;margin-bottom:0}
+.prompt-layer.visible{max-height:80px;opacity:1;margin-bottom:8px}
+.prompt-layer .layer-label{font-size:.5em;font-weight:600;color:var(--green)}
+.prompt-layer .layer-text{font-size:.45em;color:var(--text);margin:2px 0 0}
+.prompt-next-btn{font-family:'Nunito Sans',sans-serif;font-size:.5em;font-weight:600;color:var(--green);background:var(--green-light);border:none;padding:6px 16px;border-radius:100px;cursor:pointer;transition:all .2s;margin-top:8px}
+.prompt-next-btn:hover{background:var(--green);color:#fff}
+
+/* Tool launcher */
+.tool-launcher{display:flex;gap:24px;align-items:center;background:#fff;border-radius:12px;border:1px solid #e0e0dc;padding:20px;width:100%;margin-top:.6em}
+.tool-preview{flex:1;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.tool-preview img{width:100%;height:auto;border-radius:8px}
+.tool-info{flex:1}
+.tool-info h3{margin-bottom:.3em}
+.tool-info p{font-size:.55em;margin:0 0 .6em}
+.tool-launch-btn {
+  display: inline-block;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: .55em;
+  font-weight: 600;
+  color: #fff !important;
+  background: var(--green);
+  padding: 10px 22px;
+  border-radius: 100px;
+  text-decoration: none !important;
+}
+
+/* Comparison with clickable images */
+.compare-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;width:100%}
+.compare-box{background:#fff;border-radius:12px;border:1px solid #e0e0dc;padding:20px;text-align:center;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .25s}
+.compare-box:hover{border-color:var(--green);box-shadow:0 4px 16px rgba(46,125,91,.08)}
+.compare-arrow{font-size:2em;color:var(--green)}
+.compare-box h3{margin-bottom:.3em}.compare-box p{font-size:.52em;margin:0;color:var(--text-light)}
+.compare-label{font-size:.45em;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:.6em}
+/* Image overlay for comparison */
+.compare-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center;cursor:pointer}
+.compare-overlay.active{display:flex}
+.compare-overlay img{max-width:85%;max-height:85%;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+
+/* Poll options */
+.poll-grid{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;width:100%}
+.poll-opt{border:2px solid #ddd;border-radius:10px;padding:14px 22px;font-family:var(--r-heading-font);font-size:1em;color:var(--heading);min-width:120px;text-align:center;background:#fff}
+
+/* Build timer */
+.build-timer{display:inline-flex;align-items:baseline;gap:6px;background:var(--green-pale);border-radius:8px;padding:6px 14px;font-size:.52em;color:var(--green);margin-top:.6em}
+.build-timer .timer-label{font-weight:600}
+.build-timer .timer-value{font-family:var(--r-heading-font);font-size:1.5em;line-height:1}
+
+/* Confetti */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+
+/* Remix overlay */
+#remix-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,46,26,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:40px}
+#remix-overlay.active{display:flex}
+#remix-overlay pre{font-family:'Courier New',monospace;font-size:13px;color:var(--green-light);max-width:900px;max-height:500px;overflow:auto;line-height:1.5;padding:30px;background:rgba(0,0,0,.3);border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+#remix-overlay .remix-badge{position:absolute;top:24px;right:32px;font-family:'Nunito Sans',sans-serif;font-size:14px;color:rgba(255,255,255,.5)}
+
+/* Backgrounds */
+.bg-green-soft{background:linear-gradient(145deg,#eef6f1 0%,#FAFAF7 50%)!important}
+.bg-sky-soft{background:linear-gradient(145deg,#edf5fa 0%,#FAFAF7 50%)!important}
+.bg-warm-soft{background:linear-gradient(145deg,#faf3ed 0%,#FAFAF7 50%)!important}
+.bg-green-deep{background:#1a3d2a!important}
+.bg-green-deep h2,.bg-green-deep p,.bg-green-deep .big-word{color:#fff!important}
+.bg-green-deep .big-word em{color:#8fd4b3!important}
+
+/* Open badge */
+.open-badge {
+  position: relative;
+  top: auto;
+  right: auto;
+  font-size: .4em;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 4px 12px;
+  border-radius: 100px;
+  letter-spacing: .04em;
+  display: inline-block;
+  margin-top: 1.2em;
+}
+
+.contact-info{font-size:.62em;color:var(--text-light);line-height:2.2}
+.contact-info a{color:var(--green);text-decoration:underline;text-decoration-color:rgba(46,125,91,.3);text-underline-offset:3px}
+.qr-placeholder{width:150px;height:150px;border:2px dashed #ccc;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:.55em;margin:0 auto}
+
+.reveal .slide-number{font-family:'Nunito Sans',sans-serif;font-size:11px;color:#bbb}
+.reveal .progress{color:var(--green);height:3px}
+</style>
+</head>
+<body>
+
+<a href="#slide-content" class="skip-link">Skip to presentation content</a>
+
+<div id="remix-overlay" aria-hidden="true">
+  <pre id="remix-code"></pre>
+  <span class="remix-badge">Press R again to close · This is the actual HTML for this slide</span>
+</div>
+
+<!-- Image overlays for comparison -->
+<div class="compare-overlay" id="overlay-heer" onclick="this.classList.remove('active')">
+  <img src="rex-heer.jpg" alt="Rex Heer's Model of Learning Objectives — static PDF version">
+</div>
+<div class="compare-overlay" id="overlay-blooms" onclick="this.classList.remove('active')">
+  <img src="blooms-staircase.jpg" alt="Bloom's StAIrcase — interactive web-based version">
+</div>
+
+<div class="reveal" role="application" aria-roledescription="slide deck" aria-label="Designing Open Learning Tools in a Generative AI Era by Nicole Baker">
+<div class="slides" id="slide-content">
+
+<!-- ═══ 1: TITLE ═══ -->
+<section class="center-slide bg-green-soft" aria-label="Title slide">
+  <p class="pill pill-green" aria-hidden="true">OpenCon Ohio · 2026</p>
+  <h1>Designing Open<br>Learning Tools in a<br><em style="color:var(--green);font-style:italic;">Generative AI</em> Era</h1>
+  <p style="color:var(--text-light);font-size:.58em;margin-top:1.2em;">
+    Nicole Baker, MSLIS, MSEd · Case Western Reserve University
+  </p>
+  <div class="open-badge" aria-label="Openly licensed">CC BY 4.0 · Fork on GitHub</div>
+</section>
+
+<!-- ═══ 2: POLL ═══ -->
+<section class="center-slide" aria-label="Audience poll">
+  <h2>Before we begin —</h2>
+  <p style="font-size:.82em;margin-bottom:1em;">
+    Generative AI in your work. One word.
+<div class="poll-grid" role="list" aria-label="Poll options">
+  <div class="poll-opt" role="listitem" style="border-color:var(--green);background:var(--green-pale);">Curious</div>
+  <div class="poll-opt" role="listitem" style="border-color:var(--sky);background:var(--sky-light);">Cautious</div>
+  <div class="poll-opt" role="listitem" style="border-color:var(--terra);background:var(--terra-light);">Excited</div>
+  <div style="flex-basis:100%;height:0;"></div>
+  <div class="poll-opt" role="listitem" style="border-color:var(--terra);background:var(--terra-light);">Overwhelmed</div>
+  <div class="poll-opt" role="listitem" style="border-color:var(--sky);background:var(--sky-light);">Skeptical</div>
+</div>
+</section>
+
+<!-- ═══ 3: OVERLOAD ═══ -->
+<section class="center-slide bg-warm-soft" aria-label="Overload">
+  <h2 class="big-word"><em>Overload.</em></h2>
+  <p class="muted" style="margin-top:.6em;font-size:.68em;">
+    Competing priorities. Constant change. No time to start over.
+  </p>
+</section>
+
+<!-- ═══ 4: LANDSCAPE ═══ -->
+<section aria-label="The landscape">
+  <p class="pill pill-warm" aria-hidden="true">The landscape</p>
+  <h2>Asked to do <span class="terra">everything</span><br>at once.</h2>
+  <hr class="divider" aria-hidden="true">
+  <div class="grid-2" style="margin-top:.8em;">
+    <div class="card">
+      <h3 class="terra">Adapt to AI...</h3>
+      <p>without overhauling courses or abandoning pedagogical values.</p>
+    </div>
+    <div class="card">
+      <h3 class="terra">Support critical thinking...</h3>
+      <p>while AI tools reshape how students learn faster than we can evaluate them.</p>
+    </div>
+  </div>
+  <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
+  <div class="cite-drawer" role="region" aria-label="References">
+    <p class="cite-title">References</p>
+    <p>Theelen, H., Canisius, E., &amp; Lambert, G. (2025). Instructional strategies and cognitive activation in higher education. <em>Active Learning in Higher Education, 26</em>(3).</p>
+    <p>Foster, C. et al. (2024). Challenges in applying cognitive science to curriculum design. <em>The Curriculum Journal, 35</em>(3).</p>
+  </div>
+</section>
+
+<!-- ═══ 5: OPEN ═══ -->
+<section class="center-slide bg-green-soft" aria-label="Open">
+  <h2 class="big-word"><em>Open.</em></h2>
+  <p class="muted" style="margin-top:.6em;font-size:.68em;">
+    A tradition of sharing. And a new set of possibilities.
+  </p>
+</section>
+
+<!-- ═══ 6: OEP ═══ -->
+<section aria-label="Open educational practice">
+  <p class="pill pill-green" aria-hidden="true">Open educational practice</p>
+  <h2>Sharing is how<br>education <em>improves.</em></h2>
+  <hr class="divider" aria-hidden="true">
+  <div class="grid-2" style="margin-top:.8em;">
+    <div class="card">
+      <h3 class="green">The tradition</h3>
+      <p>The belief that knowledge should be accessible. That collaboration produces better materials than working in isolation. Faculty sharing syllabi, lesson plans, and resources across institutions. Platforms like OER Commons and Pressbooks. Creative Commons licensing. The 5Rs: retain, reuse, revise, remix, redistribute.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--terra);">
+      <h3 class="terra">What's changing</h3>
+      <p>AI extends what one person can create — but without intentional, human-centered evaluation, it produces noise. We need to lead how these tools are used, not just adopt them.</p>
+    </div>
+  </div>
+  <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
+  <div class="cite-drawer" role="region" aria-label="References">
+    <p class="cite-title">References</p>
+    <p>Oirschot, G. V. et al. (2024). Evaluation of multimedia patient education materials. <em>JMIR Rehab. and Assistive Tech., 11</em>.</p>
+    <p>McNamara, S. et al. (2023). Content acquisition podcasts vs open-access podcasts. <em>J. of Special Education Technology, 39</em>(1).</p>
+  </div>
+</section>
+
+<!-- ═══ 7: MLT EXPLORER ═══ -->
+<section class="bg-green-soft" aria-label="Multimedia learning theory — click to explore">
+  <p class="pill pill-green" aria-hidden="true">Multimedia learning theory</p>
+  <h2>Design principles for<br>your AI prompts.</h2>
+  <div class="mlt-grid" role="list" aria-label="Click each principle to see a sample prompt">
+    <div class="mlt-card" role="listitem" tabindex="0" onclick="this.classList.toggle('expanded')" onkeydown="if(event.key==='Enter')this.classList.toggle('expanded')">
+      <span class="mlt-num" aria-hidden="true">1</span>
+      <span class="mlt-name">Modality</span>
+      <span class="mlt-short">Narration + visuals over text</span>
+      <div class="mlt-prompt" aria-live="polite">"Design as a visual walkthrough with narration cues — no walls of text."</div>
+      <span class="mlt-hint" aria-hidden="true">click</span>
+    </div>
+    <div class="mlt-card" role="listitem" tabindex="0" onclick="this.classList.toggle('expanded')" onkeydown="if(event.key==='Enter')this.classList.toggle('expanded')">
+      <span class="mlt-num" aria-hidden="true">2</span>
+      <span class="mlt-name">Coherence</span>
+      <span class="mlt-short">Cut what doesn't matter</span>
+      <div class="mlt-prompt" aria-live="polite">"Remove anything that doesn't support the learning objective."</div>
+      <span class="mlt-hint" aria-hidden="true">click</span>
+    </div>
+    <div class="mlt-card" role="listitem" tabindex="0" onclick="this.classList.toggle('expanded')" onkeydown="if(event.key==='Enter')this.classList.toggle('expanded')">
+      <span class="mlt-num" aria-hidden="true">3</span>
+      <span class="mlt-name">Signaling</span>
+      <span class="mlt-short">Cues near related content</span>
+      <div class="mlt-prompt" aria-live="polite">"Add highlights and color changes when introducing each concept."</div>
+      <span class="mlt-hint" aria-hidden="true">click</span>
+    </div>
+    <div class="mlt-card" role="listitem" tabindex="0" onclick="this.classList.toggle('expanded')" onkeydown="if(event.key==='Enter')this.classList.toggle('expanded')">
+      <span class="mlt-num" aria-hidden="true">4</span>
+      <span class="mlt-name">Segmenting</span>
+      <span class="mlt-short">Short chunks, learner-paced</span>
+      <div class="mlt-prompt" aria-live="polite">"Break into discrete steps the learner controls. No step over 2 minutes."</div>
+      <span class="mlt-hint" aria-hidden="true">click</span>
+    </div>
+    <div class="mlt-card mlt-card-full" role="listitem" tabindex="0" onclick="this.classList.toggle('expanded')" onkeydown="if(event.key==='Enter')this.classList.toggle('expanded')">
+      <span class="mlt-num" aria-hidden="true">5</span>
+      <span class="mlt-name">Accessibility &amp; UDL</span>
+      <span class="mlt-short">Multiple means of engagement, representation, expression</span>
+      <div class="mlt-prompt" aria-live="polite">"Ensure text alternatives, adjustable pacing, and assistive technology support."</div>
+      <span class="mlt-hint" aria-hidden="true">click</span>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.45em;color:#aaa;margin-top:.6em;">Click cards to reveal sample prompts</p>
+  <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
+  <div class="cite-drawer" role="region" aria-label="References">
+    <p class="cite-title">Multimedia Learning Theory</p>
+    <p>Mayer, R. E. (2017). Using multimedia for e-learning. <em>J. of Computer Assisted Learning, 33</em>(5).</p>
+    <p>Cavanagh, T. M. &amp; Kiersch, C. E. (2022). Online multimedia lessons via CTML. <em>Ed. Tech. Research &amp; Dev., 71</em>(3).</p>
+    <p>Fyfield, M. et al. (2019). 25 principles for effective instructional video design. <em>Ascilite Publications</em>.</p>
+    <p>Noetel, M. et al. (2021). Multimedia design for learning: meta-meta-analysis. <em>Review of Ed. Research, 92</em>(3).</p>
+  </div>
+</section>
+
+<!-- ═══ 8: MLT BEFORE/AFTER ═══ -->
+<section aria-label="MLT cleanup demonstration">
+  <p class="pill pill-green" aria-hidden="true">MLT in practice</p>
+  <h2>See the <em>difference.</em></h2>
+  <div id="mlt-demo-container">
+    <!-- BEFORE: Realistic overloaded learning activity -->
+    <div class="mlt-state before-state" style="background:#fff;font-size:14px;">
+      <div style="font-weight:700;font-size:1.1em;color:#333;margin-bottom:6px;">Library Research & AI: Everything You Need to Know About Using AI in Your Research Process</div>
+      <div style="font-size:.75em;color:#555;line-height:1.5;margin-bottom:8px;">
+        In this guide, you'll learn about how to use AI tools like ChatGPT, Claude, Gemini, and Copilot during your research process. Research involves many steps: choosing a topic, developing a research question, searching for sources using library databases such as Academic Search Complete, JSTOR, PubMed, Google Scholar, and Web of Science, evaluating those sources for credibility and relevance, reading and annotating sources, synthesizing information, creating an outline, drafting your paper, revising, editing, and properly citing all sources in APA, MLA, or Chicago format depending on your discipline.
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;">
+        <span style="background:#e8f5e9;padding:2px 8px;border-radius:3px;font-size:.65em;color:#2e7d32;">✓ Tip: Always evaluate!</span>
+        <span style="background:#fff3e0;padding:2px 8px;border-radius:3px;font-size:.65em;color:#e65100;">⚠ Warning: AI can hallucinate</span>
+        <span style="background:#e3f2fd;padding:2px 8px;border-radius:3px;font-size:.65em;color:#1565c0;">ℹ Did you know?</span>
+        <span style="background:#fce4ec;padding:2px 8px;border-radius:3px;font-size:.65em;color:#c62828;">Important!</span>
+      </div>
+      <div style="font-size:.7em;color:#666;line-height:1.4;">
+        <strong>Note:</strong> Some professors allow AI and some don't, so always check your syllabus and ask your professor before using any AI tools. Also remember that AI tools are constantly changing and new ones come out every week so this guide may not cover all of them. See also our other guides on Citing Sources, Avoiding Plagiarism, Database Searching Tips, Evaluating Sources (CRAAP Test), Research Question Development, and APA 7th Edition Formatting. Related workshops are offered every Tuesday and Thursday — see the library events calendar for details.
+      </div>
+    </div>
+    <!-- AFTER: Clean, MLT-informed version -->
+    <div class="mlt-state after-state" style="background:var(--green-pale);">
+      <div style="display:flex;gap:24px;align-items:flex-start;height:100%;">
+        <div style="flex:1;">
+          <p style="font-size:13px!important;font-weight:600;color:var(--green)!important;margin:0 0 10px;">Where in the research process are you using AI?</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#fff;padding:8px 12px;border-radius:6px;border-left:3px solid var(--green);font-size:12px;color:var(--text);">Finding sources</div>
+            <div style="background:#fff;padding:8px 12px;border-radius:6px;border-left:3px solid var(--green);font-size:12px;color:var(--text);">Evaluating sources</div>
+            <div style="background:#fff;padding:8px 12px;border-radius:6px;border-left:3px solid var(--green);font-size:12px;color:var(--text);">Synthesizing ideas</div>
+            <div style="background:#fff;padding:8px 12px;border-radius:6px;border-left:3px solid var(--green);font-size:12px;color:var(--text);">Drafting &amp; revising</div>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:13px!important;font-weight:600;color:var(--terra)!important;margin:0 0 10px;">What thinking happens at each stage?</p>
+          <p style="font-size:12px!important;color:var(--text)!important;margin:0;line-height:1.6;">Select a stage. Reflect on what you're doing — and what you might hand off. One step at a time.</p>
+          <div style="margin-top:14px;padding:10px 14px;background:rgba(46,125,91,.08);border-radius:6px;">
+            <p style="font-size:11px!important;color:var(--green)!important;margin:0;font-style:italic;">✓ Segmented · ✓ Signaled · ✓ Coherent · ✓ Learner-paced</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="mlt-wand-btn" onclick="document.getElementById('mlt-demo-container').classList.toggle('cleaned');this.textContent=this.textContent.includes('Apply')?'↩ Show original':'✦ Apply MLT principles'" aria-label="Toggle between cluttered and clean design">✦ Apply MLT principles</button>
+</section>
+
+<!-- ═══ 9: BUILD ═══ -->
+<section class="center-slide" aria-label="Build">
+  <h2 class="big-word"><em>Build.</em></h2>
+  <p class="muted" style="margin-top:.6em;font-size:.68em;">
+    AI lowers the barriers. Open licensing shares the result.
+  </p>
+</section>
+
+<!-- ═══ 10: AI BRIDGE ═══ -->
+<section aria-label="AI as a technical bridge">
+  <p class="pill pill-sky" aria-hidden="true">Vibe coding</p>
+  <h2>What if you could<br><span class="green">change</span> the tool?</h2>
+  <hr class="divider" aria-hidden="true">
+  <div class="grid-3" style="margin-top:.8em;">
+    <div class="card">
+      <h3 class="green">Fill skill gaps</h3>
+      <p>Code, websites, tools — minimal prior experience needed.</p>
+    </div>
+    <div class="card">
+      <h3 class="green">Tap community</h3>
+      <p>AI works best alongside established open communities.</p>
+    </div>
+    <div class="card">
+      <h3 class="green">Custom fit</h3>
+      <p>Built for your context. Then shared openly.</p>
+    </div>
+  </div>
+  <div class="build-timer" aria-label="Vibe coding time demonstration">
+    <span class="timer-label">This presentation: approx.</span>
+    <span class="timer-value" id="build-timer-val">0</span>
+    <span class="timer-label">hours of vibe coding</span>
+  </div>
+</section>
+
+<!-- ═══ 11: USE CASE ═══ -->
+<section class="center-slide" aria-label="Use case">
+  <p class="pill pill-warm" aria-hidden="true">Use case</p>
+  <h2>Philosophy Class<br><span class="terra">Instruction Request</span></h2>
+  <p class="muted" style="font-size:.75em;margin-top:.8em;">
+    Students use Generative AI all semester. <br>The assignment: use and evaluate generative AI in an argumentative research essay.
+  </p>
+</section>
+
+<!-- ═══ 12: PROMPT TO PEDAGOGY ═══ -->
+<section aria-label="From prompt to pedagogy">
+  <p class="pill pill-warm" aria-hidden="true">From prompt to pedagogy</p>
+  <h2>Better prompts,<br>better <span class="green">tools.</span></h2>
+  <div class="prompt-container">
+    <div class="prompt-base" id="prompt-display">"Make me an activity addressing generative AI use in the research process."</div>
+    <div class="prompt-layer" id="layer-1"><span class="layer-label">+ Learning goals</span><p class="layer-text">Students will evaluate AI-generated sources for credibility.</p></div>
+    <div class="prompt-layer" id="layer-2"><span class="layer-label">+ Student context</span><p class="layer-text">First-year undergraduates with a mix of prior AI experience. Philosophy majors.</p></div>
+    <div class="prompt-layer" id="layer-3"><span class="layer-label">+ AI literacy focus</span><p class="layer-text">Students identify which cognitive steps they delegated to AI and why.</p></div>
+    <div class="prompt-layer" id="layer-4"><span class="layer-label">+ Reflection requirement</span><p class="layer-text">Include a metacognitive checkpoint: "What would change if you did this step without AI?"</p></div>
+    <div class="prompt-layer" id="layer-5"><span class="layer-label">+ Accessibility &amp; open license</span><p class="layer-text">Screen-reader compatible, adjustable pacing. CC BY 4.0 for sharing and remixing.</p></div>
+    <button class="prompt-next-btn" id="prompt-next-btn" onclick="advancePromptLayer()" aria-label="Add next prompt layer">+ Add next layer</button>
+  </div>
+</section>
+
+<!-- ═══ 13: THE QUESTION ═══ -->
+<section class="center-slide bg-warm-soft" aria-label="Central question">
+  <h2 style="font-size:2em;font-weight:300;">Where does your<br><span class="green">thinking</span> happen<br>when AI is part<br>of the process?</h2>
+</section>
+
+<!-- ═══ 14: THE TOOL ═══ -->
+<section aria-label="The thinking map tool">
+  <p class="pill pill-green" aria-hidden="true">The thinking map tool</p>
+  <h2>Openly licensed.<br>Interactive. <span class="green">Forkable.</span></h2>
+  <div class="tool-launcher">
+    <div class="tool-preview">
+      <img src="critical-thinking-map.jpg" alt="Preview of the thinking map tool showing research process stages with reflection prompts">
+    </div>
+    <div class="tool-info">
+      <h3 class="terra">Where Does Thinking Happen?</h3>
+      <p>Prompts reflection on AI use at each stage of the research process. Invites intentionality about what cognitive work might be lost. Adaptable to any context or AI policy.</p>
+      <a href="https://bakerxn.github.io/thinking-map" target="_blank" rel="noopener" class="tool-launch-btn">Launch tool ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 15: MLT IN ACTION ═══ -->
+<section class="center-slide bg-green-soft" aria-label="MLT in action">
+  <p class="pill pill-outline" aria-hidden="true">MLT in action</p>
+  <h2 style="font-size:1.5em;line-height:1.6;font-weight:300;">
+    Discrete stages = <span class="green">segmenting</span><br>
+    Visual cues = <span class="green">signaling</span><br>
+    Student pacing = <span class="green">learner agency</span><br>
+    Nothing extraneous = <span class="green">coherence</span>
+  </h2>
+</section>
+
+<!-- ═══ 16: JOURNEY ═══ -->
+<section class="center-slide" aria-label="Journey">
+  <h2 class="big-word"><em>Journey.</em></h2>
+  <p class="muted" style="margin-top:.6em;font-size:.68em;">
+    Vibe coding and learning out loud.
+  </p>
+</section>
+
+<!-- ═══ 17: MY JOURNEY ═══ -->
+<section aria-label="My journey — click items to expand">
+  <h2>Not a straight line.</h2>
+  <hr class="divider" aria-hidden="true">
+  <ol style="list-style:none;padding:0;margin-top:.6em;">
+    <li class="timeline-item talk-point" tabindex="0" onclick="this.classList.toggle('open')" onkeydown="if(event.key==='Enter')this.classList.toggle('open')">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div><p><strong>Faculty need</strong> — activities covering content + AI literacy <span class="talk-toggle" aria-hidden="true">+</span></p>
+      <div class="talk-detail" aria-live="polite">Faculty were asking: "How do I bring AI into my class without losing the learning?" They needed something practical, not a policy document.</div></div>
+    </li>
+    <li class="timeline-item talk-point" tabindex="0" onclick="this.classList.toggle('open')" onkeydown="if(event.key==='Enter')this.classList.toggle('open')">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div><p><strong>Bloom's StAIrcase</strong> — Bloom's, UDL, and digital literacy <span class="talk-toggle" aria-hidden="true">+</span></p>
+      <div class="talk-detail" aria-live="polite">Built an activity bank grounded in pedagogical frameworks. Gave faculty a starting point — not a prescription. This was the project that taught me I could build things.</div></div>
+    </li>
+    <li class="timeline-item talk-point" tabindex="0" onclick="this.classList.toggle('open')" onkeydown="if(event.key==='Enter')this.classList.toggle('open')">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div><p><strong>Skill building</strong> — SVG, GitHub, a whole new world <span class="talk-toggle" aria-hidden="true">+</span></p>
+      <div class="talk-detail" aria-live="polite">Conversations with colleagues opened doors. Learned about version control, open hosting, and how to share work in ways that invite remix. A lot of mistakes along the way.</div></div>
+    </li>
+    <li class="timeline-item talk-point" tabindex="0" onclick="this.classList.toggle('open')" onkeydown="if(event.key==='Enter')this.classList.toggle('open')">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div><p><strong>Iterate</strong> — ChatGPT → Claude. Mistakes are part of it <span class="talk-toggle" aria-hidden="true">+</span></p>
+      <div class="talk-detail" aria-live="polite">ChatGPT created errors it couldn't fix. Switching to Claude for coding was a turning point. The iterative process matters — explicitly describing what you want, dedicating time to revision.</div></div>
+    </li>
+    <li class="timeline-item talk-point" tabindex="0" onclick="this.classList.toggle('open')" onkeydown="if(event.key==='Enter')this.classList.toggle('open')">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div><p><strong>MLT in prompts</strong> — tell AI to segment, signal, and cut <span class="talk-toggle" aria-hidden="true">+</span></p>
+      <div class="talk-detail" aria-live="polite">The AI doesn't know Mayer's principles unless you tell it. Including MLT language in prompts — "chunk into learner-paced steps, add visual cues, remove extraneous content" — changes the output.</div></div>
+    </li>
+  </ol>
+</section>
+
+<!-- ═══ 18: QUOTE ═══ -->
+<section class="center-slide bg-warm-soft" aria-label="Quote">
+  <blockquote>Be open to the journey not being perfect.</blockquote>
+</section>
+
+<!-- ═══ 19: YOUR TURN ═══ -->
+<section class="center-slide" aria-label="Audience reflection">
+  <p class="pill pill-warm" aria-hidden="true">Your turn</p>
+  <h2 style="font-size:1.6em;">Think about the last time you<br>explained something and wished<br>you had a <span class="terra">better tool.</span></h2>
+  <p style="font-size:.72em;margin-top:.8em;">
+    What was the topic? Drop it in the chat.
+  </p>
+</section>
+
+<!-- ═══ 20: OPEN + AI ═══ -->
+<section aria-label="Open plus AI">
+  <p class="pill pill-green" aria-hidden="true">Why now</p>
+  <h2><span class="green">Open</span> + AI =<br>broader adoption.</h2>
+  <hr class="divider" aria-hidden="true">
+  <div class="grid-2" style="margin-top:.8em;">
+    <div class="card">
+      <h3 class="green">Now possible</h3>
+      <p>Custom tools for your exact students. Shared openly for others to adapt.</p>
+    </div>
+    <div class="card">
+      <h3 class="green">Previously wasn't</h3>
+      <p>Required coding expertise or years with the same students. AI changes the equation.</p>
+    </div>
+  </div>
+  <button class="cite-btn" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle references">References</button>
+  <div class="cite-drawer" role="region" aria-label="References">
+    <p class="cite-title">References</p>
+    <p>AlShaikh, R. et al. (2024). CTML in AI educational video assistant design. <em>Heliyon, 10</em>(3).</p>
+    <p>Almasseri, M. &amp; Alhojailan, M. (2019). Flipped learning and CTML. <em>J. Computer Assisted Learning, 35</em>(6).</p>
+  </div>
+</section>
+
+<!-- ═══ 21: STATIC → INTERACTIVE ═══ -->
+<section aria-label="From static OER to interactive tool">
+  <p class="pill pill-sky" aria-hidden="true">Vibe coding in action</p>
+  <h2>From static OER to<br><span class="green">interactive tool.</span></h2>
+  <div class="compare-grid" style="margin-top:.8em;">
+    <div class="compare-box" onclick="document.getElementById('overlay-heer').classList.add('active')" tabindex="0" onkeydown="if(event.key==='Enter')document.getElementById('overlay-heer').classList.add('active')" aria-label="Click to view Rex Heer's model">
+      <span class="compare-label" style="background:var(--sky-light);color:#2a7a9e;">Static OER</span>
+      <h3 class="sky" style="font-size:.85em;">Rex Heer's Model</h3>
+      <p>A well-designed PDF of Bloom's Taxonomy. Widely used. Not interactive. Difficult to adapt.</p>
+      <div style="margin-top:10px;background:var(--sky-light);border-radius:6px;padding:8px;font-size:.38em;color:#2a7a9e;">PDF · Fixed layout · Read-only · Click to preview</div>
+    </div>
+    <div class="compare-arrow" aria-hidden="true">→</div>
+    <div class="compare-box" style="border-color:var(--green);" onclick="document.getElementById('overlay-blooms').classList.add('active')" tabindex="0" onkeydown="if(event.key==='Enter')document.getElementById('overlay-blooms').classList.add('active')" aria-label="Click to view Bloom's StAIrcase">
+      <span class="compare-label" style="background:var(--green-light);color:var(--green);">Interactive tool shared under CC</span>
+      <h3 class="green" style="font-size:.85em;">Bloom's StAIrcase</h3>
+      <p>Interactive, web-based, shared under Creative Commons. Explorable, adaptable, remixable.</p>
+      <div style="margin-top:10px;background:var(--green-pale);border-radius:6px;padding:8px;font-size:.38em;color:var(--green);">HTML · Interactive · CC BY 4.0 · Click to preview</div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.48em;color:var(--text-light);margin-top:.6em;">Static OER can become interactive tools shared under CC licenses — vibe coding makes it possible.</p>
+</section>
+
+<!-- ═══ 22: EXAMPLES ═══ -->
+<section aria-label="People doing this work">
+  <h2>People doing<br>this <em>work.</em></h2>
+  <hr class="divider" aria-hidden="true">
+  <ul style="list-style:none;padding:0;margin-top:.6em;">
+    <li class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><p><strong>Bloom's StAIrcase</strong> — AI literacy activity bank, openly licensed</p></li>
+    <li class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><p><strong>David Wiley</strong> — AI-assisted open textbook development</p></li>
+    <li class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><p><strong>TeachAnything.ai</strong> — AI-powered teaching resources</p></li>
+  </ul>
+  <p class="muted" style="font-size:.55em;margin-top:1em;">Full list at the link on the closing slide.</p>
+</section>
+
+<!-- ═══ 23: FORK IT ═══ -->
+<section class="bg-green-deep center-slide" aria-label="Open invitation">
+  <h2 style="font-size:2em;font-weight:300;">Everything here is<br>openly licensed.<br><br><span style="color:#8fd4b3;">Fork it. Remix it. Make it yours.</span></h2>
+  <p style="font-size:.55em;color:rgba(255,255,255,.45);margin-top:1.2em;">
+    This presentation, the thinking map tool, and Bloom's StAIrcase — all on GitHub, CC BY 4.0.
+  </p>
+</section>
+
+<!-- ═══ 24: WHAT'S NEXT ═══ -->
+<section class="bg-green-soft" aria-label="What you can do next">
+  <p class="pill pill-green" aria-hidden="true">What's next</p>
+  <h2>Three things you can<br>do <em>this week.</em></h2>
+  <hr class="divider" aria-hidden="true">
+  <div class="grid-3" style="margin-top:.8em;">
+    <div class="card">
+      <h3 class="green">Try one prompt</h3>
+      <p>Take a teaching frustration and describe it to an AI tool. Include one MLT principle. See what comes back.</p>
+    </div>
+    <div class="card">
+      <h3 class="green">Explore one tool</h3>
+      <p>Visit the resource list from today. Fork something. Change one thing. See how it feels.</p>
+    </div>
+    <div class="card">
+      <h3 class="green">Share one thing</h3>
+      <p>If you build something — even something small — share it openly. Add a CC license. Put it where others can find it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 25: THANK YOU ═══ -->
+<section class="center-slide bg-green-soft" aria-label="Thank you" id="thank-you-slide">
+  <h2>Thank you.</h2>
+  <p style="font-style:italic;color:var(--green);font-size:.62em;margin-bottom:1.2em;">
+    Let's keep building and sharing openly.
+  </p>
+  <div class="grid-2" style="max-width:640px;margin:0 auto;gap:32px;">
+    <div class="contact-info" style="text-align:left;">
+      <strong style="color:var(--heading);">Nicole Baker, MSLIS, MSEd</strong><br>
+      <a href="mailto:bakerxn@gmail.com">bakerxn@gmail.com</a><br>
+      <a href="https://linkedin.com/in/nicole-baker">linkedin.com/in/nicole-baker</a><br>
+      <a href="https://github.com/bakerxn">github.com/bakerxn</a>
+    </div>
+    <div>
+      <div class="qr-placeholder" aria-label="QR code placeholder">[ QR code ]</div>
+      <p style="text-align:center;font-size:.48em;color:#aaa;margin-top:.4em;">Slides, tools &amp; resources</p>
+    </div>
+  </div>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+</section>
+
+<!-- ═══ 26: META ═══ -->
+<section class="center-slide" aria-label="Credits">
+  <p style="font-size:.6em;color:var(--text-light);">
+    This presentation was vibe-coded with generative AI<br>
+    and is openly licensed under <span class="green">CC BY 4.0</span>.<br><br>
+    Built with <a href="https://revealjs.com">reveal.js</a> · Hosted on <a href="https://github.com/bakerxn">GitHub</a><br><br>
+    <span style="font-size:.85em;color:#aaa;">Press <kbd style="background:#e8e8e4;padding:1px 5px;border-radius:3px;">R</kbd> on any slide to view its source code.<br>
+    Interactive features: MLT explorer, before/after demo, prompt layering,<br>expandable talking points, citation drawers, comparison viewer,<br>build timer, and confetti. All vibe-coded.</span>
+  </p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  hash:true,slideNumber:'c/t',showNotes:false,
+  transition:'fade',transitionSpeed:'slow',backgroundTransition:'fade',
+  center:false,width:1280,height:720,margin:0.04,keyboard:true
+});
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  Reveal.configure({transition:'none',backgroundTransition:'none'});
+}
+
+// Build timer — caps at 5
+let timerInterval=null;
+function startBuildTimer(){
+  const el=document.getElementById('build-timer-val');if(!el)return;
+  let h=0;clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{h+=0.5;if(h>5){clearInterval(timerInterval);return;}el.textContent=h.toFixed(1);},350);
+}
+
+// Prompt layers
+let currentPromptLayer=0;const totalPromptLayers=5;
+function advancePromptLayer(){
+  currentPromptLayer++;
+  if(currentPromptLayer>totalPromptLayers){currentPromptLayer=0;resetPromptLayers();return;}
+  const layer=document.getElementById('layer-'+currentPromptLayer);if(layer)layer.classList.add('visible');
+  const btn=document.getElementById('prompt-next-btn');
+  if(currentPromptLayer>=totalPromptLayers)btn.textContent='↩ Reset';
+}
+function resetPromptLayers(){
+  for(let i=1;i<=totalPromptLayers;i++){const l=document.getElementById('layer-'+i);if(l)l.classList.remove('visible');}
+  document.getElementById('prompt-next-btn').textContent='+ Add next layer';
+}
+
+// Remix viewer
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  if(e.key==='r'||e.key==='R'){
+    const overlay=document.getElementById('remix-overlay');
+    if(overlay.classList.contains('active')){overlay.classList.remove('active');return;}
+    const current=Reveal.getCurrentSlide();if(!current)return;
+    const code=document.getElementById('remix-code');
+    code.innerHTML=current.outerHTML.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    overlay.classList.add('active');
+  }
+});
+
+// Slide events
+Reveal.on('slidechanged',function(event){
+  const slide=event.currentSlide;
+  if(slide.querySelector('#build-timer-val'))startBuildTimer();
+  if(slide.id==='thank-you-slide')setTimeout(launchConfetti,500);
+});
+
+// Confetti
+function launchConfetti(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const canvas=document.getElementById('confetti-canvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#2e7d5b','#5ba4c9','#c07a50','#d4eadf','#f5e6d8','#dbeef7','#8fd4b3'];
+  const pieces=[];
+  for(let i=0;i<100;i++){pieces.push({x:Math.random()*canvas.width,y:Math.random()*-canvas.height,w:5+Math.random()*5,h:3+Math.random()*4,color:colors[Math.floor(Math.random()*colors.length)],vy:1.2+Math.random()*2.5,vx:(Math.random()-.5)*1.8,rot:Math.random()*360,rotSpeed:(Math.random()-.5)*7,opacity:1});}
+  let frames=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);let alive=false;
+    pieces.forEach(p=>{if(p.opacity<=0)return;alive=true;p.y+=p.vy;p.x+=p.vx;p.rot+=p.rotSpeed;if(frames>100)p.opacity-=0.012;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.globalAlpha=Math.max(0,p.opacity);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
+    frames++;if(alive&&frames<280)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+</script>
+</body>
+</html>
